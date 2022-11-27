@@ -1,0 +1,237 @@
+<!-- views/partials/landingPageNavBarEL.ejs -->
+
+<header>
+    <!------------------------------------------NAVBAR START------------------------------------------>
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" data-target="sidebar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a id="logo-container" href="/eventleader" class="brand-logo"><i id="homeicon" class="material-icons">home</i><b>Hans Bethe House</b></a>
+                <div>
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger btn right' href='#adminnavbar' data-target='adminactions' style="text-align: right; margin-top: 20px; margin-right: 15px">Administrator Actions</a>
+                    <!-- Dropdown Structure -->
+                    <ul id='adminactions' class='dropdown-content'>
+                    <li><a class="center waves-effect waves-light modal-trigger" id="edit2" href="#editprofile"><i class="material-icons">edit</i>Edit Profile</a></li>
+                    <li><a class="center waves-effect waves-light modal-trigger" id="create" href="#createevent"><i class="material-icons">add</i>Create Event</a></li>
+                    <li><a class="center waves-effect waves-light modal-trigger" href="#addadmin"><i class="material-icons">person_add</i>Add Student</a></li>
+                    <li><a class="center waves-effect waves-light modal-trigger"  style="color: red;" href="#removeadmin"><i class="material-icons">block</i> Remove Student</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!------------------------------------------NAVBAR END------------------------------------------>
+    <!------------------------------------------EDIT PROFILE MODAL START------------------------------------------>
+    <div id="editprofile" class="modal">
+        <div class="modal-content">
+            <p id="editprofile" class="left-align"><i class="tiny material-icons">edit</i> Edit Profile</p>
+            <div class="row">
+                <form class="col s12" method="post" action="/eventleader/editprofile">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input name="firstname" id="edit_first_name" type="text" class="validate" required="" aria-required="true">
+                            <label class="active" for="edit_first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="lastname" id="edit_last_name" type="text" class="validate" required="">
+                            <label class="active" for="edit_last_name">Last Name</label>
+                        </div>
+                        <input name="id" id="edit_id" type="hidden">
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                    <div class="input-field col s12">
+                        <select name="westhouse">
+                            <option id="edit_building" selected>Please select a building</option>
+                            <option value="Hans Bethe - Main">Hans Bethe - Main</option>
+                            <option value="Hans Bethe - McFaddin">Hans Bethe - McFaddin</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label data-error="Select an option">Campus Residence</label>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="input-field col m3 s12">
+                            <input name="netID" id="edit_netid" type="text" class="validate" required="">
+                            <label class="active" for="edit_netid">NetID</label>
+                        </div>
+                        <div class="input-field col m9 s12">
+                            <input name="contactno" id="edit_contactnumber" type="number" class="validate" data-length="10" min="0">
+                            <label class="active" for="edit_contactnumber">Mobile Number</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer right" style="margin-top: 20px; text-align: right;">
+                        <button type="submit" class="waves-effect waves-green btn-small">Submit Profile Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------EDIT PROFILE MODAL END------------------------------------------>
+    <!------------------------------------------CREATE EVENT MODAL START------------------------------------------>
+    <div id="createevent" class="modal">
+        <div class="modal-content">
+            <p id="createevent" class="left-align"><i class="tiny material-icons">add</i> Create Event</p>
+            <div class="row">
+                <form class="col s12" method="post" action="/eventleader/event/create" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="eventname" id="event_name" type="text" class="validate" required="">
+                            <label for="event_name">Event name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <input placeholder="mm/dd/yyyy" name="date" type="date" id="createdate" class="validate" required="">
+                            <label for="createdate">Date</label>
+                        </div>
+                        <div class="input-field col s6 m3">
+                            <input name="starttime" id="createstart" type="text" class="validate timepicker" required="">
+                            <label for="createstart">Start time</label>
+                        </div>
+                        <div class="input-field col s6 m3">
+                            <input name="endtime" id="createend" type="text" class="validate timepicker" required="">
+                            <label for="createend">End time</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="location" id="location" type="text" class="validate" required="">
+                            <label for="location">Location</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea name="description" id="eventdescr" class="materialize-textarea" required=""></textarea>
+                                    <label for="eventdescr">Event description</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="input-field col s7">
+                            <select name = "eventleader" class="event-leader-select"></select>
+                            <label>Select event leader</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <input name="attendee" id="attendeequota" type="number" min="0" class="validate" required="">
+                            <label for="attendeequota">Max number of attendees</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea name="other" id="other" class="materialize-textarea"></textarea>
+                                    <label for="other"><span style="font-style: italic;">(Optional)</span> Additional instructions for participants (e.g. food restrictions)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>File</span>
+                            <input name="file" type="file" id="posterfile">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload poster file">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <label style="margin-left: 10px;">
+                            <input name="hiddensignup" id="hiddensignup" type="checkbox">
+                            <span>Hide sign-up list?</span>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" value="Submit" class="waves-effect waves-green btn-small right">Create Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------CREATE EVENT MODAL END------------------------------------------>
+    <!------------------------------------------ADD STUDENT MODAL START------------------------------------------>
+    <form id="addadmin" class="modal" method="post" action="/eventleader/addstudent">
+        <div class="modal-content">
+            <p id="addadmin" class="left-align"><i class="tiny material-icons">person_add</i> Add Student</p>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input name="firstname" id="add_first_name" type="text" class="validate" required="" aria-required="true">
+                            <label for="add_first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="lastname" id="add_last_name" type="text" class="validate" required="">
+                            <label for="add_last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="input-field col s12">
+                            <select name="westhouse" required="required">
+                                <option value="" disabled selected>Please select a building</option>
+                                <option value="Hans Bethe - Main">Hans Bethe - Main</option>
+                                <option value="Hans Bethe - McFaddin">Hans Bethe - McFaddin</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label data-error="Select an option">Campus Residence</label>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m3 s12">
+                            <input name="netID" id="add_netid" type="text" class="validate" required="">
+                            <label for="add_netid">NetID</label>
+                        </div>
+                        <div class="input-field col m9 s12">
+                            <input name="contactno" id="add_contactnumber" type="number" class="validate" data-length="10" min="0">
+                            <label for="add_contactnumber">Mobile Number</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px;">
+                        <button onclick="submitted()" type="submit" class="right waves-effect waves-green btn-small">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!------------------------------------------ADD STUDENT MODAL END------------------------------------------>
+    <!------------------------------------------REMOVE STUDENT MODAL START------------------------------------------>
+    <form id="removeadmin" class="modal">
+        <div class="modal-content">
+            <p id="removeadmin" class="left-align"><i class="tiny material-icons">block</i> Remove Student</p>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input type="text" id="removeadminname" class="autocomplete autoAllStudents" required="">
+                        <label for="autocomplete-input">Name or NetID</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px;">
+                        <a class="waves-effect btn waves-light modal-trigger right" onclick="removeAdminName(document.getElementById('removeadminname').value)" href="#deleteadmin">Remove</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!------------------------------------------REMOVE STUDENT MODAL END------------------------------------------>
+    <!------------------------------------------REMOVE STUDENT CONFIRMATION MODAL START------------------------------------------>
+    <div id="deleteadmin" class="modal">
+        <form method="post" action="/eventleader/removestudent">
+            <div id="confirmationmodal" class="modal-content">
+                <h4 id="deleteheader">Confirm Action</h4>
+                <p id="deletedesc" class="left"></p><br>
+                <p id="warning" class="left" style="color: red; margin-left: 20px; margin-top: 0;"><b>This action cannot be undone.</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-close waves-effect waves-green btn-flat right">Yes</button>
+                <a href="#" class="modal-close waves-effect waves-green btn-flat right">Cancel</a>
+                <input type="hidden" name="removeUserNetId" id="removeUserNetId" />
+            </div>
+        </form>
+    </div>
+    <!------------------------------------------REMOVE STUDENT CONFIRMATION MODAL END------------------------------------------>
+</header>

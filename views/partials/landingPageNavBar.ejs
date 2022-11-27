@@ -1,0 +1,63 @@
+<!-- views/partials/landingPageNavBar.ejs -->
+
+<header>
+    <!------------------------------------------NAVBAR START------------------------------------------>
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#" data-target="sidebar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a id="logo-container" href="/students" class="brand-logo"><i id="homeicon" class="material-icons">home</i><b>Hans Bethe House</b></a>
+                <div>
+                    <a class="right waves-effect waves-light btn modal-trigger" id="edit" href="#editprofile">Edit Profile</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!------------------------------------------NAVBAR END------------------------------------------>
+    <!------------------------------------------EDIT PROFILE MODAL START------------------------------------------>
+    <div id="editprofile" class="modal">
+        <div class="modal-content">
+            <p id="editprofile" class="left-align"><i class="tiny material-icons">edit</i> Edit Profile</p>
+            <div class="row">
+                <form class="col s12" method = "post" action = "/students/editprofile">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input name="firstname" id="edit_first_name" type="text" class="validate" required="" aria-required="true">
+                            <label class="active" for="edit_first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="lastname" id="edit_last_name" type="text" class="validate" required="">
+                            <label class="active" for="edit_last_name">Last Name</label>
+                        </div>
+                        <input name="id" id="edit_id" type="hidden" />
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="input-field col s12">
+                            <select name="westhouse">
+                                <option id="edit_building" selected="true">Please select a building</option>
+                                <option value="Hans Bethe - Main">Hans Bethe - Main</option>
+                                <option value="Hans Bethe - McFaddin">Hans Bethe - McFaddin</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label data-error="Select an option">Campus Residence</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m3 s12">
+                            <input name="netID" id="edit_netid" type="text" class="validate" required="">
+                            <label class="active" for="edit_netid">NetID</label>
+                        </div>
+                        <div class="input-field col m9 s12">
+                            <input name="contactno" id="edit_contactnumber" type="number" class="validate" data-length="10" min="0">
+                            <label class="active" for="edit_contactnumber">Mobile Number</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer right" style="margin-top: 20px; text-align: right;">
+                        <button type="submit" class="waves-effect waves-green btn-small">Submit Profile Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------EDIT PROFILE MODAL END------------------------------------------>
+</header>

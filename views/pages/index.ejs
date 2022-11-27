@@ -1,0 +1,152 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Bethe Events</title>
+
+      <!-- CSS  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+      <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  </head>
+  <body>
+    <!------------------------------------------NAVBAR START------------------------------------------>
+    <% include ../partials/landingPageNavBar %>
+    <!------------------------------------------NAVBAR END------------------------------------------>
+
+    <main>
+      <div class="row">
+        <!------------------------------------------SIDEBAR START------------------------------------------>
+        <% include ../partials/sidebar %>
+        <!------------------------------------------SIDEBAR END------------------------------------------>
+        <!------------------------------------------FEATURED EVENT START------------------------------------------>
+        <div id="featuredevent" class="center event-profile-container">
+            <img id="featuredeventposter"/>
+            <p id="featuredTitle" style="font-weight: bold;"></p>
+            <p id="featuredDate"></p>
+            <p id="featuredDescr"></p>
+        </div>
+        <!------------------------------------------FEATURED EVENT END------------------------------------------>
+        <div id="eventprofile" class="center event-profile-container" style="display: none;">
+          <!------------------------------------------EVENT PROFILE START------------------------------------------>
+          <div id="samplerow" class="row">
+            <div class="col s12 m3">
+              <img id="sampleposter" />
+            </div>
+            <div id="sampledetail" class="col s12 m9">
+              <p id="eventdate" class="left-align"><span id="date"></span></p>
+              <p id="eventtitle" class="left-align"></p>
+              <p id="eventlocation" class="left-align"></p>
+              <p id="eventGRF" class="left-align"></p>
+              <p id="eventdescription" class="left-align light"></p>
+              <p id="eventdetails" class="left-align light"></p>
+              <div id="samplebutton" class="left">
+                  <a id="signupbutton" class="waves-effect waves-light btn-small modal-trigger" href="#signup">Sign Up</a>
+              </div>
+            </div>
+            <!------------------------------------------SIGN-UP MODAL START------------------------------------------>
+            <div id="signup" class="modal">
+              <div class="modal-content">
+                <p id="signup" class="left-align">Sign up for this event</p>
+                <div class="row">
+                  <form class="col s12" action="/students/signup" method="post">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea
+                          name="comments"
+                          id="comments"
+                          type="text"
+                          class="materialize-textarea validate"
+                        ></textarea>
+                        <input name="eventId" id="eventId" type="hidden" />
+                        <label for="comments">Other Comments</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="submit-signup-button" type="submit" class="waves-effect waves-green btn-small right" style="text-align: right;">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!------------------------------------------SIGN-UP MODAL END------------------------------------------>
+          </div>
+          <!------------------------------------------EVENT PROFILE END------------------------------------------>
+          <br />
+          <div id="samplerow" class="row">
+            <hr id="horizline" />
+            <div id="dashboard">
+              <!------------------------------------------EVENT ATTENDEES START------------------------------------------>
+              <table id="dTable" class="bordered striped">
+                <thead>
+                  <tr>
+                    <th id="dashboardContent" style="background-color: #DDEDFF;">
+                      <p id="dashboardContent" class="col s10" style="width: 70%; margin: 0;">Event Attendees</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-students"></tbody>
+              </table>
+              <!------------------------------------------EVENT ATTENDEES END------------------------------------------>
+              <!------------------------------------------STUDENT REMOVE ATTENDEE START------------------------------------------>
+              <form id="removestudent" class="modal" method="post" action="/students/removeattendee">
+                <div id="confirmationmodal" class="modal-content">
+                  <h4 id="deleteheader">Confirm Action</h4>
+                  <p id="removestudentdesc" class="left"></p>
+                  <br />
+                  <p id="warning" class="left" style="color: red; margin-left: 20px; margin-top: 0;margin-bottom: 0;">
+                    <b>This action cannot be undone.</b>
+                  </p>
+                  <br /><br />
+                  <p id="removestudentdesc" class="left" style="font-style: italic;">
+                    <span style="font-weight: bold"></span>Note: An email notification will be sent to the user removed.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="modal-close waves-effect waves-green btn-flat right">Yes</button>
+                  <a href="#" class="modal-close waves-effect waves-green btn-flat right">Cancel</a>
+                  <input type="hidden" id="removeAttendeePersonId" name="removeAttendeePersonId" />
+                  <input type="hidden" id="removeAttendeeEventId" name="removeAttendeeEventId" />
+                </div>
+              </form>
+              <!------------------------------------------STUDENT REMOVE ATTENDEE END------------------------------------------>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script>
+      var events = <%- JSON.stringify(events) %>;
+      var attendees = <%- JSON.stringify(attendees) %>;
+      var userProfile = <%- JSON.stringify(studentProfile) %>;
+      var eventLeaders = undefined;
+
+      // insert featured event
+      insertFeaturedEvent(events);
+
+      // load event posters
+      loadEventPosters(events, attendees, userProfile, eventLeaders);
+      document.getElementById('left-chevron').onclick = function() { showPreviousWeek(events, attendees, userProfile, eventLeaders); }
+      document.getElementById('right-chevron').onclick = function() { showNextWeek(events, attendees, userProfile, eventLeaders); }
+
+      // auto-fill user's profile with current profile information
+      document.getElementById('edit_first_name').value = userProfile.firstName;
+      document.getElementById('edit_last_name').value = userProfile.lastName;
+      document.getElementById('edit_id').value = userProfile.id;
+      document.getElementById('edit_building').innerHTML = userProfile.building;
+      document.getElementById('edit_netid').value = userProfile.netID;
+      document.getElementById('edit_contactnumber').value = userProfile.contactNo;
+    </script>
+  </body>
+</html>

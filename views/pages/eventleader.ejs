@@ -1,0 +1,322 @@
+<!-- views/pages/eventleader.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bethe Events</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  </head>
+
+  <body>
+    <!------------------------------------------NAVBAR START------------------------------------------>
+    <% include ../partials/landingPageNavBarEL %>
+    <!------------------------------------------NAVBAR END------------------------------------------>
+    <main>
+      <div class="row">
+        <!------------------------------------------SIDEBAR START------------------------------------------>
+        <% include ../partials/sidebar %>
+        <!------------------------------------------SIDEBAR END------------------------------------------>
+        <!------------------------------------------FEATURED EVENT START------------------------------------------>
+        <div id="featuredevent" class="center event-profile-container">
+          <img id="featuredeventposter" />
+          <p id="featuredTitle" style="font-weight: bold;"></p>
+          <p id="featuredDate"></p>
+          <p id="featuredDescr"></p>
+        </div>
+        <!------------------------------------------FEATURED EVENT END------------------------------------------>
+        <div id="eventprofile" class="center event-profile-container" style="display: none;">
+          <!------------------------------------------EVENT PROFILE START------------------------------------------>
+          <div id="samplerow" class="row">
+            <div class="col s12 m3">
+              <img id="sampleposter" />
+            </div>
+            <div id="sampledetail" class="col s12 m9">
+              <div class="row">
+                <div class="col s6">
+                  <p id="eventdate" class="left-align">
+                    <span id="date"></span>
+                  </p>
+                </div>
+                <div class="col s6">
+                  <!------------------------------------------EVENT ACTIONS START------------------------------------------>
+                  <!--------- Dropdown Trigger For Event Actions --------->
+                  <a id="adminDropdown" class="dropdown-trigger btn" href="#" data-target="eventactions">Event Actions</a>
+
+                  <!--------- Dropdown Structure For Event Actions--------->
+                  <ul id="eventactions" class="dropdown-content">
+                    <li id="adminaction">
+                      <a class="waves-effect waves-light modal-trigger" href="#editevent">
+                        <i class="material-icons">edit</i>
+                        Edit Event
+                      </a>
+                    </li>
+                    <li id="adminaction">
+                      <a href="#!">
+                        <i class="material-icons">cloud_download</i>
+                        Download Data
+                      </a>
+                    </li>
+                    <li id="adminaction">
+                      <a class="waves-effect waves-light modal-trigger" href="#deletemodal">
+                        <i id="deleteevent" class="material-icons">delete_forever</i>
+                        <span id="deleteevent">Delete Event</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <!------------------------------------------EVENT ACTIONS END------------------------------------------>
+                  <!------------------------------------------EDIT EVENT MODAL START------------------------------------------>
+                  <div id="editevent" class="modal">
+                    <div class="modal-content">
+                      <p id="editevent" class="left-align"><i class="tiny material-icons">edit</i> Edit Event</p>
+                      <div class="row">
+                        <form class="col s12" method="post" action="/eventleader/event/edit" enctype="multipart/form-data">
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input value=" " name="eventname" id="edit_event_name" type="text" class="validate" required="">
+                              <input name="eventId" id="editEventId" type="hidden">
+                              <label class="active" for="edit_event_name">Event Name</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="input-field col s12 m6">
+                                <input value=" " placeholder="mm/dd/yyyy" name="date" type="date" id="editcreatedate" class="validate" required="">
+                                <label class="active" for="editcreatedate">Date</label>
+                              </div>
+                              <div class="input-field col s6 m3">
+                                <input value=" " name="starttime" id="editcreatestart" type="text" class="validate timepicker" required="">
+                                <label for="editcreatestart">Start Time</label>
+                              </div>
+                              <div class="input-field col s6 m3">
+                                <input value=" " name="endtime" id="editcreateend" type="text" class="validate timepicker" required="" />
+                                <label for="editcreateend">End Time</label>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input value=" " name="location" id="edit_location" type="text" class="validate" required="">
+                              <label class="active" for="edit_location">Location</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col s12">
+                                <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea name="description" id="editeventdescr" class="materialize-textarea" required=""> </textarea>
+                                    <label class="active" for="editeventdescr">Event Description</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="row" style="margin-top: 10px;">
+                            <div class="input-field col s7">
+                                  <select name="eventleader" class="event-leader-select"></select>
+                                  <label>Select event leader</label>
+                            </div>
+                            <div class="input-field col s5">
+                                <input value="0" name="attendee" id="editattendeequota" type="number" min="0" class="validate" required="" />
+                                <label class="active" for="editattendeequota">Max number of attendees</label>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col s12">
+                                <div class="row">
+                                  <div class="input-field col s12">
+                                    <textarea name="other" id="editspecialdescr" class="materialize-textarea"> </textarea>
+                                    <label for="editspecialdescr"  id="otherlabel"><span style="font-style: italic;">(Optional)</span> Additional instructions for participants (e.g. food restrictions)</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="file-field input-field">
+                            <div class="btn">
+                              <span>File</span>
+                              <input name="file" type="file" id="posterfile" />
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input name="filename" id="editposterfilename" class="file-path validate" type="text" placeholder="Upload poster file">
+                            </div>
+                          </div>
+                          <div class="row" style="margin-top: 10px;">
+                            <label class="left" style="margin-left: 10px;">
+                              <input name="hiddensignup" type="checkbox" id="edithidden">
+                              <span>Hide sign-up list?</span>
+                            </label>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" value="Submit" class="waves-effect waves-green btn-small right">Save Event</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!------------------------------------------EDIT EVENT MODAL END------------------------------------------>
+                  <!------------------------------------------DELETE EVENT MODAL START------------------------------------------>
+                  <form id="deletemodal" class="modal" method="post" action="/eventleader/deleteevent">
+                    <div id="confirmationmodal" class="modal-content" >
+                      <h4 id="deleteheader">Confirm Action</h4>
+                      <p id="deletedesc" class="left">
+                        Are you sure you want to delete this event?
+                      </p>
+                      <br />
+                      <p id="warning" class="left">
+                        <b>This action cannot be undone.</b>
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="modal-close waves-effect waves-green btn-flat right">Yes</button>
+                      <a href="#!" class="modal-close waves-effect waves-green btn-flat right">Cancel</a>
+                      <input type="hidden" id="deleteEventId" name="deleteEventId" />
+                    </div>
+                  </form>
+                  <!------------------------------------------DELETE EVENT MODAL END------------------------------------------>
+                </div>
+              </div>
+              <p id="eventtitle" class="left-align"></p>
+              <p id="eventlocation" class="left-align"></p>
+              <p id="eventGRF" class="left-align"></p>
+              <p id="eventdescription" class="left-align light"></p>
+              <p id="eventdetails" class="left-align light"></p>
+              <div id="samplebutton" class="left">
+                <a id="signupbutton" class="waves-effect waves-light btn-small modal-trigger" href="#signup">Sign Up</a>
+              </div>
+            </div>
+            <!------------------------------------------SIGN-UP MODAL START------------------------------------------>
+            <div id="signup" class="modal">
+              <div class="modal-content">
+                <p id="signup" class="left-align">Sign up for this event</p>
+                <div class="row">
+                  <form class="col s12" action="/eventleader/signup" method="post">
+                    <div class="row">
+                      <div class="input-field col s12">
+                          <textarea
+                          name="comments"
+                          id="comments"
+                          type="text"
+                          class="materialize-textarea validate"
+                        ></textarea>
+                        <input name="eventId" id="eventId" type="hidden" />
+                        <label for="comments">Other Comments</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="submit-signup-button" type="submit" class="waves-effect waves-green btn-small right" style="text-align: right;">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!------------------------------------------SIGN-UP MODAL END------------------------------------------>
+          </div>
+          <!------------------------------------------EVENT PROFILE END------------------------------------------>
+          <br />
+          <div id="samplerow" class="row">
+            <hr id="horizline" />
+            <div id="dashboard">
+              <!------------------------------------------EVENT ATTENDEES START------------------------------------------>
+              <table id="dTable" class="bordered striped">
+                <thead>
+                  <tr>
+                    <th id="dashboardContent" style="background-color: #DDEDFF;">
+                      <p id="dashboardContent" class="col s10" style="width: 70%; margin: 0;">Event Attendees</p>
+                      <a class="waves-effect waves-light btn-small modal-trigger right" style="margin-right: 10px;" href="#addattendee">Add Attendees</a>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-eventleader"></tbody>
+              </table>
+              <!------------------------------------------EVENT ATTENDEES END------------------------------------------>
+              <!------------------------------------------EVENT LEADER REMOVE ATTENDEE START------------------------------------------>
+              <form id="removestudent" class="modal" method="post" action="/eventleader/removeattendee">
+                <div id="confirmationmodal" class="modal-content">
+                  <h4 id="deleteheader">Confirm Action</h4>
+                  <p id="removestudentdesc" class="left"></p>
+                  <br />
+                  <p id="warning" class="left" style="color: red; margin-left: 20px; margin-top: 0; margin-bottom: 0;">
+                    <b>This action cannot be undone.</b>
+                  </p>
+                  <br /><br />
+                  <p id="removestudentnote" class="left" style="font-style: italic; font-size: 14px"> </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="modal-close waves-effect waves-green btn-flat right">Yes</button>
+                  <a href="#" class="modal-close waves-effect waves-green btn-flat right" >Cancel</a>
+                  <input type="hidden" id="removeAttendeePersonId" name="removeAttendeePersonId"/>
+                  <input type="hidden" id="removeAttendeeEventId" name="removeAttendeeEventId"/>
+                </div>
+              </form>
+              <!------------------------------------------EVENT LEADER REMOVE ATTENDEE END------------------------------------------>
+            </div>
+            <!------------------------------------------ADD ATTENDEE MODAL START------------------------------------------>
+            <div id="addattendee" class="modal">
+              <div class="modal-content">
+                <p id="addattendee" class="left-align">Add Attendee</p>
+                <p id="addattdesc" class="left"><span style="font-weight: bold; font-style: italic;">Note:</span> You may only add attendees that are currently in the system. 
+                  Administrators may add new users with “Add Student” in the “Administrator Actions” menu.</p>
+                <div class="row">
+                  <form class="col s12" method="post" action="/eventleader/addattendee">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input name="name" type="text" id="attendeename" class="autocomplete autoAllUsers" required=""/>
+                        <input type="hidden" id="addAttendeeEventId" name="addAttendeeEventId"/>
+                        <label for="autocomplete-input">Attendee Name</label>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px;">
+                      <button type="submit" class="waves-effect waves-light btn-small modal-close right">Add</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!------------------------------------------ADD ATTENDEE MODAL END------------------------------------------>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script>
+      var events = <%- JSON.stringify(events) %>;
+      var attendees = <%- JSON.stringify(attendees) %>;
+      var userProfile = <%- JSON.stringify(eventleaderProfile) %>;
+      var eventLeaders = <%- JSON.stringify(eventLeaders) %>;
+      var users = <%- JSON.stringify(people) %>;
+
+      // insert featured event
+      insertFeaturedEvent(events);
+
+      // load event posters
+      loadEventPosters(events, attendees, userProfile, eventLeaders);
+      document.getElementById("left-chevron").onclick = function() { showPreviousWeek(events, attendees, userProfile, eventLeaders); }
+      document.getElementById("right-chevron").onclick = function() { showNextWeek(events, attendees, userProfile, eventLeaders); }
+
+      // auto-fill user's profile with current profile information
+      document.getElementById('edit_first_name').value = userProfile.firstName;
+      document.getElementById('edit_last_name').value = userProfile.lastName;
+      document.getElementById('edit_id').value = userProfile.id;
+      document.getElementById('edit_building').innerHTML = userProfile.building;
+      document.getElementById('edit_netid').value = userProfile.netID;
+      document.getElementById('edit_contactnumber').value = userProfile.contactNo;
+
+      // fill event leader dropdown in "Create Event" form under "Adminstrator Actions"
+      fillEventLeaders(eventLeaders);
+
+      // load appropriate users in the system to auto-fill "Remove Student", "Remove User", and "Add Attendee" fields
+      autoFillUsers(users);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!-- views/partials/sidebar.ejs -->
+
+<div id="sidebar" class="sidenav sidenav-fixed">
+    <!-- CALENDAR START -->
+    <div class="weekly-calendar-header-container">
+        <div id="month-year"></div>
+        <div class="dates-chevrons-container">
+            <div class="left-chevron-container" onclick="changeChevron('left')" onmouseover="blueChevron('left')" onmouseout="whiteChevron('left')"><img id="left-chevron" src="/images/chevrons/left-arrow-chevron.png" /></div><div class="dates-container">
+                <div class="weekdays">
+                    <div class="day">Mon</div>
+                    <div class="day">Tue</div>
+                    <div class="day">Wed</div>
+                    <div class="day">Thu</div>
+                    <div class="day">Fri</div>
+                    <div class="day">Sat</div>
+                    <div class="day">Sun</div>
+                </div>
+                <div class="dates">
+                    <div class="date"><a href="#sidebar-event-date-1"><button class="date-button unselectedDate" id="date-1"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-2"><button class="date-button unselectedDate" id="date-2"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-3"><button class="date-button unselectedDate" id="date-3"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-4"><button class="date-button unselectedDate" id="date-4"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-5"><button class="date-button unselectedDate" id="date-5"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-6"><button class="date-button unselectedDate" id="date-6"></button></a></div>
+                    <div class="date"><a href="#sidebar-event-date-7"><button class="date-button unselectedDate" id="date-7"></button></a></div>
+                </div>
+            </div><div class="right-chevron-container" onclick="changeChevron('right')" onmouseover="blueChevron('right')" onmouseout="whiteChevron('right')"><img id="right-chevron" src="/images/chevrons/right-arrow-chevron.png"/></div>
+        </div>
+    </div>
+    <!-- CALENDAR END -->
+    <!-- POSTERS START -->
+    <div class="sidebar-event-posters-wrapper">
+        <div class="sidebar-posters-container" id="sidebar-posters-1">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-1"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-1"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-2">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-2"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-2"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-3">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-3"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-3"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-4">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-4"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-4"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-5">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-5"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-5"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-6">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-6"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-6"></div>
+        </div>
+        <div class="sidebar-posters-container" id="sidebar-posters-7">
+            <div class="sidebar-event-date">
+                <a id="sidebar-event-date-7"></a>
+            </div>
+            <div class="sidebar-event-posters-container" id="sidebar-event-posters-container-7"></div>
+        </div>
+    </div>
+    <!-- POSTERS END -->
+</div>

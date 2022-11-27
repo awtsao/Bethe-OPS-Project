@@ -1,0 +1,69 @@
+<!-- views/pages/signup.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bethe Events</title>
+
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    </head>
+
+    <body>
+        <div class="container col s12 center" style="width: 90% !important;">
+            <h5 id="signupinstr">
+                Please enter the following information for your profile
+            </h5>
+            <form class="col s12" style="margin-top: 50px;" method="post" action="/signup">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input name="firstname" input id="first_name" type="text" class="validate" required="" aria-required="true" />
+                        <label name="firstname" for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input name="lastname" input id="last_name" type="text" class="validate" required="" />
+                        <label name="lastname" for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="input-field col s12">
+                        <select name="westhouse" required="required">
+                <option id="building" value="" disabled selected>Building</option>
+                <option value="Hans Bethe - Main">Hans Bethe - Main</option>
+                <option value="Hans Bethe - McFaddin">Hans Bethe - McFaddin</option>
+                <option value="Other">Other</option>
+                </select>
+                        <label data-error="Select an option">Campus Residence</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col m3 s12">
+                        <input name="netID" id="netid" type="text" class="validate" required="">
+                        <label for="netid">Net ID</label>
+                    </div>
+                    <div class="input-field col m9 s12">
+                        <input name="contactno" id="contactnumber" type="number" class="validate">
+                        <label for="contactnumber">Mobile Number</label>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <button type="submit" class="waves-effect waves-green btn-small right">
+                        Submit sign up form
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        <!-- <script src="/js/materialize.js"></script> -->
+        <script src="/js/init.js"></script>
+    </body>
+</html>

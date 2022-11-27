@@ -1,0 +1,557 @@
+/* Custom Stylesheet */
+
+/**
+ * Use this file to override Materialize files to update the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/** 
+ * Removes blue highlighting/outline that appears around a div when the div is clicked on.
+ * - Source: https://stackoverflow.com/questions/25393214/annoying-blue-highlighting-around-div-after-click 
+ */
+*:focus {
+    outline: 0;
+    outline: none;
+}
+
+main {
+    padding-left: 300px;
+}
+
+button {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-family: Helvetica;
+}
+
+nav {
+    background-image: linear-gradient(to right, #053a91, #2addb4);
+}
+
+nav .nav-wrapper {
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+div.modal div.ng2-dropdown-menu[style] {
+  top: auto !important;
+  left: auto !important;
+  margin-top: -24px !important;
+}
+
+@media only screen and (max-width: 992px) {
+    nav .brand-logo {
+        left: 180px;
+    }
+}
+
+.modal .modal-footer {
+    margin-top: 7px;
+}
+
+.container {
+    max-width: none;
+}
+
+/********************* SIDEBAR START *********************/
+#sidebar {
+    background-color: #f1f1f1;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.weekly-calendar-header-container {
+    background-color: #fff;
+    padding-bottom: 1em;
+    box-shadow: 0px 1px 3px 0px #454242;
+    position: sticky;
+    top: 0;
+}
+
+#month-year {
+    padding-top: 1em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #053a91;
+    text-align: center;
+}
+
+.left-chevron-container,
+.right-chevron-container,
+.dates-container {
+    display: inline-block;
+}
+
+.left-chevron-container,
+.right-chevron-container {
+    width: 10%;
+    height: 10%;
+    background-color: transparent;
+}
+
+.dates-container {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+}
+
+#left-chevron,
+#right-chevron {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+.weekdays,
+.dates {
+    display: block;
+    margin: 0 auto;
+}
+
+.day,
+.date {
+    width: calc(100% / 8);
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    color: #053a91;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.date-button {
+    text-align: center;
+    background-color: #fff;
+    color: #053a91;
+    font-size: 11px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.selectedDate {
+    background-color: #053a91;
+    color: #fff;
+}
+
+/* Default date - white background, blue text */
+.unselectedDate {
+    background-color: #fff;
+    color: #053a91;
+}
+
+.selectedEvent {
+    background-color: #e4e4e4;
+}
+
+.sidebar-event-posters-wrapper {
+    overflow-y: scroll;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 3em;
+}
+
+.sidebar-event-poster-text-container {
+    margin-bottom: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    cursor: pointer;
+}
+
+.sidebar-event-date,
+.sidebar-poster-event-title,
+.sidebar-poster-event-time {
+    font-family: Helvetica;
+    color: #053a91;
+    text-align: center;
+}
+
+.sidebar-event-date {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar-event-date a {
+    color: #053a91;
+}
+
+.sidebar-poster-event-title {
+    padding-top: 0.5em;
+    padding-bottom: 0.25em;
+    font-size: 14px;
+    font-weight: bold;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-poster-event-time {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.sidebar-poster-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.sidebar-poster {
+    max-height: 130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:focus {
+    background-color: #053a91; 
+}
+/*************** SIDEBAR END ******************/
+
+#signupinstr {
+    font-family: Helvetica;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+#edit {
+    margin: 15px;
+}
+
+/********************* EVENT PROFILE START *********************/
+.event-profile-container {
+    height: inherit;
+    overflow-y: scroll;
+}
+
+#samplerow {
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 28px;
+}
+
+#sampledetail {
+    padding-left: 36px;
+}
+
+#samplebutton {
+    margin: 0 20px 0 0;
+    padding: 0;
+}
+
+#eventdate {
+    margin: 0 0 0 0;
+    font-size: 15px;
+    color: #083d91;
+    font-weight: normal;
+}
+
+#eventtitle {
+    font-size: 28px;
+    font-weight: bolder;
+    color: #083d91;
+    margin: 6px 0 6px 0;
+}
+
+#eventlocation {
+    font-size: 15px;
+    color: #083d91;
+    margin: 0 0 0 0;
+}
+
+#eventGRF {
+    margin: 0 0 0 0;
+    color: #083d91;
+    font-style: italic;
+    font-size: 15px;
+}
+
+#eventdescription, #eventdetails {
+    margin: 4px 20px 22px 0;
+    font-size: 13px;
+    line-height: 16px;
+    color: #777777;
+}
+
+#signupbutton:disabled {
+    background-color: #ccc;
+    color: #fff;
+}
+
+#horizline {
+    margin-left: 28px;
+    margin-right: 36px;
+    background-color: #d3d3d3;
+}
+/********************* EVENT PROFILE END *********************/
+
+/********************* FEATURED EVENT START *********************/
+#featuredeventheading {
+    font-size: 28px;
+    color: #083d91;
+    font-weight: bolder;
+}
+
+#featuredTitle {
+    color: #083d91;
+    margin-bottom: 0 !important;
+}
+
+#featuredDate {
+    color: #777777;
+    font-size: 16px;
+    margin-top: 0 !important;
+}
+
+#featuredDescr {
+    color: #777777;
+    font-size: 14px;
+}
+
+#sampleposter {
+    width: 100%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 10px 0 0 0;
+}
+
+#featuredevent {
+    font-family: Helvetica;
+    font-size: 18px;
+    height: inherit;
+}
+
+#featuredeventposter {
+    width: 30%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 4% 0 0 0;
+}
+/********************* FEATURED EVENT END *********************/
+
+/********************* EVENT ACTIONS START *********************/
+#adminDropdown {
+    width: 150px !important;
+}
+
+#adminAction {
+    margin: 0 0 0 0;
+}
+/********************* EVENT ACTIONS END *********************/
+
+#deleteevent {
+    color: red !important;
+}
+
+#deleteheader {
+    margin: 20px;
+    text-align: left;
+}
+
+#deletedesc, #removestudentdesc, #removestudentnote {
+    margin-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1rem;
+}
+
+#addattdesc {
+  margin-bottom: 0;
+  line-height: 1rem;
+  font-size: 14px; 
+  color: black; 
+  text-align: left;
+  font-style: italic;
+}
+
+.dropdown-content {
+    overflow: visible !important;
+}
+
+/********************* EVENT ATTENDEES START *********************/
+#dashboard {
+    margin: 10px;
+}
+
+#dashboardHeading {
+    color: #083d91 !important;
+    text-align: left;
+}
+
+#dTable {
+  border-color: #777777; 
+  margin-top: 50px; 
+  table-layout: auto;
+}
+
+#dashboardContent {
+  font-size: 21px; 
+  color: #083d91; 
+  font-weight: normal;
+}
+
+#dRemove {
+  color: red;
+  width: 4%;
+}
+
+#dNetid {
+  width: 25%;
+  color: #777777;
+}
+
+#dNumber {
+    width: 8%;
+}
+
+#dHome {
+  color: #ccc;
+  font-weight: lighter;
+}
+/********************* EVENT ATTENDEES END *********************/
+
+#warning {
+  color: red; 
+  margin-left: 20px; 
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#signup,
+#createevent,
+#editprofile,
+#addadmin,
+#removeadmin,
+#editevent,
+#addattendee {
+    font-size: 18px;
+    font-weight: normal;
+    color: #083d91;
+    margin-bottom: 0;
+}
+
+#deleteheader {
+  color: #083d91;
+}
+
+.brand-logo {
+    color: white;
+}
+
+tbody {
+    display: block;
+    height: 100vh;
+    width: calc(100% - 1em);
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead {
+    width: calc(100% - 1em);
+}
+
+table {
+    width: 100%;
+}
+
+nav ul a,
+nav .brand-logo {
+    color: white;
+    font-family: Helvetica;
+    font-weight: lighter;
+    font-size: large;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.sidenav-trigger {
+    color: #26a69a;
+}
+
+nav .sidenav-trigger i {
+    line-height: 72px;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+
+    #featuredeventposter {
+        width: 34%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+
+    #featuredeventposter {
+        width: 50%;
+    }
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+footer.page-footer {
+    margin: 0;
+}
