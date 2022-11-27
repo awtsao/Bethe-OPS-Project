@@ -1,3 +1,4 @@
+This is a project for CS 5150 done in the Spring 2019 semester. The repository has been cloned from the original Cornell repository for public view. As the copyright of Bethe OPS belongs to Erica Ostermann, please reach out to eo93@cornell.edu for inquiries about usage of the code. 
 # Bethe OPS
 
 Bethe OPS is an online, automated house event sign-up tool for Cornell's Hans Bethe House. Bethe OPS can be accessed here (**NOTE**: the EC2 instance for the app must be running): http://events.hansbethehouse.cornell.edu/.
